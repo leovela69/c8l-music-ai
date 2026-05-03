@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C8L MUSIC AI | ANTIGRAVITY ECOSYSTEM</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Space+Grotesk:wght@300;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --fuchsia: #d946ef; --amber: #f59e0b; }
+        body { background-color: black; color: white; font-family: 'Space_Grotesk', sans-serif; overflow-x: hidden; }
+        .text-display { font-family: 'Inter', sans-serif; font-weight: 900; text-transform: uppercase; letter-spacing: -0.05em; }
+        .brutal-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s; }
+        .brutal-card:hover { border-color: var(--fuchsia); background: rgba(217, 70, 239, 0.03); }
+        .btn-brutal { background: var(--fuchsia); color: black; font-weight: 900; text-transform: uppercase; padding: 1rem 2rem; letter-spacing: 0.1em; transition: all 0.2s; cursor: pointer; border: none; }
+        .btn-brutal:hover { transform: translate(-4px, -4px); box-shadow: 4px 4px 0 white; }
+        .glass-sidebar { background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(20px); border-right: 1px solid rgba(255, 255, 255, 0.1); }
+        .stat-glow { text-shadow: 0 0 20px rgba(217, 70, 239, 0.5); }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        const { motion, AnimatePresence } = FramerMotion;
+
+        const Icons = {
+            Zap: () => <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>,
+            Video: () => <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M23 7l-7 5 7 5V7zM2 5h12v14H2z"/></svg>,
+            Pen: () => <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 19l7-7 3 3-7 7-3-3zM18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/></svg>,
+            Terminal: () => <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M4 17l6-6-6-6M12 19h8"/></svg>,
+            Trophy: () => <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-3a2 2 0 012-2h2m12 7h2a2 2 0 002-2v-3a2 2 0 00-2-2h-2M12 22V12"/></svg>,
+            Home: () => <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+        };
+
+        const Home = ({ setPage }) => (
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-12">
+                <header className="space-y-4">
+                    <h1 className="text-display text-7xl md:text-8xl leading-tight">ANTIGRAVITY <span className="text-fuchsia-600">ECOSYSTEM</span></h1>
+                    <p className="text-white/40 text-xl tracking-[0.3em] uppercase">Por C8L Agency & Leo Vela</p>
+                </header>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <Card onClick={() => setPage('ghostwriter')} title="GHOSTWRITER V4" desc="Suno v4 Engine + Style Prompts." icon={<Icons.Pen />} color="bg-blue-600" />
+                    <Card onClick={() => setPage('community')} title="COMMUNITY HUB" desc="El Barómetro Cuántico." icon={<Icons.Trophy />} color="bg-amber-500" />
+                    <Card onClick={() => setPage('studio')} title="STUDIO VEO" desc="Lip-Sync & Cinematic Video." icon={<Icons.Video />} color="bg-fuchsia-600" />
+                    <Card onClick={() => setPage('producer')} title="STUDIO PRO" desc="Stems & Sello Leo Vela." icon={<Icons.Terminal />} color="bg-white/10" />
+                </div>
+            </motion.div>
+        );
+
+        const Ghostwriter = () => {
+            const [style, setStyle] = useState('Bolero-House');
+            const [neg, setNeg] = useState('robotic, autotune, noise');
+            const [lyrics, setLyrics] = useState('');
+            const [result, setResult] = useState('');
+            const [loading, setLoading] = useState(false);
+
+            const handleRefine = () => {
+                setLoading(true);
+                setTimeout(() => {
+                    setResult(`(VERSO 1)\n${lyrics || 'Ritmo de seda en el corazón'}\n\n(CORO)\nQuantum Studio, éxito mundial\n\n(OUTRO - SELLO LEO VELA)\nY vivieron felices... Porque nosotros quisimos.`);
+                    setLoading(false);
+                }, 1500);
+            };
+
+            return (
+                <div className="space-y-8">
+                    <div className="flex justify-between items-end">
+                        <h2 className="text-display text-5xl">GHOSTWRITER <span className="text-blue-500">V4</span></h2>
+                        <select value={style} onChange={e=>setStyle(e.target.value)} className="bg-white/5 border border-white/20 p-2 text-[10px] font-black uppercase">
+                            <option>Bolero-House</option>
+                            <option>Reggae-Seda</option>
+                            <option>Ukelele-Quantum</option>
+                        </select>
+                    </div>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div className="space-y-4">
+                            <textarea value={lyrics} onChange={e=>setLyrics(e.target.value)} placeholder="Letras brutas..." className="w-full h-64 bg-white/5 border border-white/10 p-6 text-lg outline-none focus:border-blue-500" />
+                            <input value={neg} onChange={e=>setNeg(e.target.value)} placeholder="Negative Prompt Shield..." className="w-full bg-red-500/5 border border-red-500/20 p-3 text-xs font-mono text-red-400 outline-none" />
+                            <button onClick={handleRefine} className="btn-brutal !bg-blue-600 w-full">REFINAR CON MOTOR V4</button>
+                        </div>
+                        <div className="w-full h-80 bg-black border border-white/5 p-8 text-xl text-blue-400 font-bold overflow-y-auto whitespace-pre-wrap">
+                            {loading ? "PROCESANDO [C8L_ENGINE]..." : (result || "Esperando entrada...")}
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const Community = () => (
+            <div className="space-y-12">
+                <h2 className="text-display text-5xl">BARÓMETRO <span className="text-amber-500">CUÁNTICO</span></h2>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <Stat label="ENGAGEMENT" val="98%" />
+                    <Stat label="VIRALIDAD" val="X4.2" />
+                    <Stat label="REGALOS" val="🎁 1.2K" />
+                    <Stat label="RANKING" val="TOP 3" />
+                </div>
+                <div className="brutal-card p-8">
+                    <h3 className="text-display text-2xl mb-8">TOP 100 - COMUNIDAD C8L</h3>
+                    <div className="space-y-4 text-xs font-bold uppercase">
+                        <div className="flex justify-between border-b border-white/10 pb-4"><span>#1 BOLERO DEL SOL</span><span className="text-amber-500">VIRAL / MONETIZADO</span></div>
+                        <div className="flex justify-between border-b border-white/10 pb-4"><span>#2 REGGAE DE SEDA</span><span className="text-fuchsia-500">TOP ESTATUS</span></div>
+                        <div className="flex justify-between border-b border-white/10 pb-4"><span>#3 QUANTUM TRACK</span><span className="text-white/40">NEW ENTRY</span></div>
+                    </div>
+                </div>
+            </div>
+        );
+
+        const App = () => {
+            const [page, setPage] = useState('home');
+            return (
+                <div className="flex min-h-screen">
+                    <nav className="fixed w-20 h-full glass-sidebar flex flex-col items-center py-10 gap-10 z-50">
+                        <div onClick={() => setPage('home')} className="w-12 h-12 bg-fuchsia-600 flex items-center justify-center cursor-pointer shadow-[0_0_20px_rgba(217,70,239,0.5)]">
+                            <Icons.Zap />
+                        </div>
+                        <NavItem active={page==='home'} onClick={()=>setPage('home')} icon={<Icons.Home />} />
+                        <NavItem active={page==='ghostwriter'} onClick={()=>setPage('ghostwriter')} icon={<Icons.Pen />} />
+                        <NavItem active={page==='community'} onClick={()=>setPage('community')} icon={<Icons.Trophy />} />
+                        <NavItem active={page==='studio'} onClick={()=>setPage('studio')} icon={<Icons.Video />} />
+                        <NavItem active={page==='producer'} onClick={()=>setPage('producer')} icon={<Icons.Terminal />} />
+                    </nav>
+                    <main className="ml-20 p-8 md:p-20 w-full max-w-7xl">
+                        <AnimatePresence mode="wait">
+                            {page === 'home' && <Home key="h" setPage={setPage} />}
+                            {page === 'ghostwriter' && <Ghostwriter key="g" />}
+                            {page === 'community' && <Community key="c" />}
+                            {page === 'studio' && <div className="text-display text-4xl">STUDIO VEO ACTIVADO</div>}
+                            {page === 'producer' && <div className="text-display text-4xl">STUDIO PRO ACTIVADO</div>}
+                        </AnimatePresence>
+                    </main>
+                </div>
+            );
+        };
+
+        const Card = ({ title, desc, icon, color, onClick }) => (
+            <div onClick={onClick} className="brutal-card p-8 cursor-pointer group hover:scale-[1.02] transition-all">
+                <div className={`${color} w-12 h-12 flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform`}>{icon}</div>
+                <h3 className="text-display text-xl mb-2">{title}</h3>
+                <p className="text-white/30 text-xs leading-relaxed uppercase font-bold">{desc}</p>
+            </div>
+        );
+
+        const Stat = ({ label, val }) => (
+            <div className="brutal-card p-6">
+                <div className="text-[8px] font-black text-white/30 tracking-[0.2em]">{label}</div>
+                <div className="text-3xl font-black mt-2 stat-glow">{val}</div>
+            </div>
+        );
+
+        const NavItem = ({ active, icon, onClick }) => (
+            <div onClick={onClick} className={`p-2 cursor-pointer transition-colors ${active ? 'text-fuchsia-500' : 'text-white/20 hover:text-white'}`}>
+                {icon}
+            </div>
+        );
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

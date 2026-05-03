@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #d946ef; /* Vibrant Pink/Purple */
+  --primary-glow: #d946ef80;
+  --bg-deep: #000000;
+  --surface: #0a0a0a;
+  --brutal-border: 2px solid #ffffff;
+}
+
+@layer base {
+  body {
+    @apply bg-black text-white selection:bg-fuchsia-500 selection:text-black;
+  }
+}
+
+@layer components {
+  .brutal-card {
+    @apply bg-[#0a0a0a] border-2 border-white/10 rounded-none transition-all duration-300;
+  }
+  
+  .brutal-card:hover {
+    @apply border-fuchsia-500 shadow-[0_0_20px_rgba(217,70,239,0.3)];
+  }
+
+  .glow-purple {
+    box-shadow: 0 0 15px var(--primary-glow);
+  }
+
+  .glass-studio {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .btn-brutal {
+    @apply px-8 py-4 bg-fuchsia-600 text-black font-black uppercase tracking-tighter transition-all;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .btn-brutal:hover {
+    @apply bg-white scale-[1.02] shadow-[0_0_30px_#d946ef];
+  }
+
+  /* Video Clip Visualizer Effects */
+  .glitch-overlay {
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size: 100% 2px, 3px 100%;
+    pointer-events: none;
+  }
+}
+
+/* Custom Typography */
+.text-display {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+}

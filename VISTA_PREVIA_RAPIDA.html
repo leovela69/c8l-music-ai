@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C8L MUSIC AI | BRUTALIST PREVIEW</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #d946ef;
+            --primary-glow: rgba(217, 70, 239, 0.4);
+        }
+
+        body {
+            background: #000000;
+            color: white;
+            font-family: 'Space Grotesk', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .text-display {
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        .brutal-card {
+            background: #0a0a0a;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .brutal-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+
+        .btn-brutal {
+            background: #d946ef;
+            color: black;
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .btn-brutal:hover {
+            background: white;
+            box-shadow: 0 0 30px var(--primary);
+            transform: scale(1.02);
+        }
+
+        .glitch-overlay {
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+
+        .glow-purple {
+            text-shadow: 0 0 15px var(--primary-glow);
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Sidebar Mock -->
+    <nav class="fixed left-0 top-0 h-full w-24 border-r-2 border-white/10 flex flex-col items-center py-8 gap-12 bg-black z-50">
+        <div class="w-12 h-12 bg-fuchsia-600 flex items-center justify-center shadow-[0_0_20px_#d946ef]">
+            <i data-lucide="zap" class="text-black fill-black"></i>
+        </div>
+        <div class="flex flex-col gap-10">
+            <i data-lucide="video" class="text-fuchsia-500 cursor-pointer"></i>
+            <i data-lucide="pen-tool" class="text-white/30 hover:text-white cursor-pointer"></i>
+            <i data-lucide="terminal" class="text-white/30 hover:text-white cursor-pointer"></i>
+        </div>
+    </nav>
+
+    <main class="ml-24 p-12 space-y-12">
+        <header class="flex justify-between items-start">
+            <div>
+                <h1 class="text-display text-8xl leading-none tracking-tighter">
+                    C8L <span class="text-fuchsia-600">MUSIC AI</span>
+                </h1>
+                <p class="text-white/40 tracking-[0.4em] uppercase text-xs mt-4">Ghostwriting & Executive Production</p>
+            </div>
+            <button class="btn-brutal px-12 py-4">Pro Studio</button>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-12">
+            <!-- Studio Area -->
+            <section class="space-y-8">
+                <div class="relative aspect-video bg-[#050505] border-2 border-white/5 overflow-hidden rounded-none brutal-card">
+                    <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2070&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover opacity-40">
+                    <div class="absolute inset-0 glitch-overlay"></div>
+                    <div class="absolute inset-0 flex flex-col items-center justify-center p-12 text-center">
+                        <div class="w-24 h-24 border-2 border-fuchsia-600 rounded-full flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(217,70,239,0.3)]">
+                            <i data-lucide="music" class="w-10 h-10 text-fuchsia-500"></i>
+                        </div>
+                        <h2 class="text-display text-4xl glow-purple">LISTO PARA EL MASTERING</h2>
+                        <p class="text-[10px] tracking-widest text-white/40 uppercase mt-2">Sincronización Cinemática IA</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-8">
+                    <div class="space-y-4">
+                        <h3 class="text-display text-xl">Ghostwriter Refinement</h3>
+                        <div class="brutal-card p-6 min-h-[150px] text-white/50 italic text-sm">
+                            "La IA está analizando la métrica de tus versos..."
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <h3 class="text-display text-xl">Executive Output</h3>
+                        <div class="brutal-card p-6 min-h-[150px] font-mono text-[10px] text-fuchsia-400 bg-[#000000]">
+                            { "bpm": 128, "mood": "Aggressive", "engine": "Gemini 2.0" }
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sidebar -->
+            <aside class="space-y-12">
+                <div class="bg-fuchsia-600 p-8 text-black brutal-card">
+                    <h3 class="text-display text-3xl mb-4 leading-none">Upgrade Your Sound</h3>
+                    <p class="text-sm font-bold opacity-80 mb-8">Accede al motor de videoclips cinemáticos y créditos ilimitados.</p>
+                    <button class="w-full py-4 border-4 border-black font-black uppercase text-xs">Aprender Más</button>
+                </div>
+
+                <div>
+                    <h3 class="text-display text-xl mb-6">Recientes</h3>
+                    <div class="space-y-4">
+                        <div class="p-4 border-2 border-white/5 flex gap-4 hover:border-fuchsia-500 transition-all cursor-pointer">
+                            <div class="w-12 h-12 bg-white/5 flex items-center justify-center">
+                                <i data-lucide="mic-2" class="w-5 h-5 text-white/20"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xs">Energía Nocturna</h4>
+                                <p class="text-[10px] text-white/20 tracking-widest uppercase">Hace 2 horas</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <script>
+        lucide.createIcons();
+        document.querySelector('.btn-brutal').onclick = () => alert('Bienvenido a la Élite de C8L. El diseño Brutalista está activo.');
+    </script>
+</body>
+</html>
